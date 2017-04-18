@@ -21,6 +21,7 @@ $showPokemon.on('click', function(e) {
   e.preventDefault();
 
   $pokemonsBox.append($divAjaxLoader);
+  $pokemonsBox.children().remove();
 
   let pokemons = [""];
 
@@ -71,7 +72,7 @@ $searchType.on('submit', function(e) {
 
   getPromiseData(trainerTypeCalls).then(result => {
     // console.log(result);
-    getDoubleDamagePokemon(result);
+    getHalfDamagePokemon(result);
   });
 
 });
@@ -105,9 +106,9 @@ function getHalfDamagePokemon(pokemonType) {
     return fetch(type.url, option)
   });
 
-  getPromiseData(pokemons).then(results => {
+  getPromiseData(pokemonType).then(results => {
     let tmpTab = [];
-    pokemons = pokemons.map(pokemon => {
+    let pokemons = results.map(pokemon => {
       return pokemon.pokemon;
     }).reduce((a, b) => [
       ...a,
@@ -141,7 +142,6 @@ function getPromiseData(promisesArray) {
 }
 
 function showPokemon(pokemon) {
-  // loop through and display the pokemon!
   $pokemonsBox.children('div.loader').remove();
   pokemon.forEach(pokemon => {
     var $box = $('<div>').addClass('pokemon');
