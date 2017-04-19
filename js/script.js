@@ -6,7 +6,7 @@ var $ajaxLoader = $('<img>').attr('src', `img/ajax-loader.gif`);
 var $showPokemon = $('.show-pokemon');
 var $pokemonsBox = $('.pokemons-box');
 var $showMore = $('.show-more');
-var $searchType = $('.search_type')
+var $searchType = $('.search_type');
 
 $divAjaxLoader.append($ajaxLoader);
 
@@ -20,8 +20,8 @@ const option = {
 $showPokemon.on('click', function(e) {
   e.preventDefault();
 
-  $pokemonsBox.append($divAjaxLoader);
   $pokemonsBox.children().remove();
+  $pokemonsBox.append($divAjaxLoader);
 
   let pokemons = [""];
 
